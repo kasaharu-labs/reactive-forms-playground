@@ -1,1 +1,23 @@
+<h1 class="page-header">{{ title }}</h1>
+
+<div class="title">タスクボード</div>
+
+<form [formGroup]="todoForm">
+  <div formArrayName="list">
+    <ng-container
+      *ngFor="let field of todoForm.controls.list.controls; index as i"
+    >
+      <div>
+        <input
+          type="text"
+          [formControlName]="i"
+          placeholder="新しいタスクを追加..."
+          (paste)="onPaste($event, i)"
+        />
+      </div>
+    </ng-container>
+  </div>
+  <button type="button" (click)="addNewTaskForm()">タスクを追加する</button>
+</form>
+
 <router-outlet></router-outlet>
